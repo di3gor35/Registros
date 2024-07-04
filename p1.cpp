@@ -16,7 +16,8 @@ struct contactoEmail {
 
 void agregarContacto(vector<contactoEmail> &contactos) {
     contactoEmail contacto;
-    cout << "Ingrese el nombre del contacto: ", cin >> contacto.nombre;
+    cin.ignore();
+    cout << "Ingrese el nombre del contacto: ", getline(cin, contacto.nombre);
     cout << "Ingrese el sexo del contacto: ", cin >> contacto.sexo;
     cout << "Ingrese la edad del contacto: ", cin >> contacto.edad;
     cout << "Ingrese el telefono del contacto: ", cin >> contacto.telefono;
@@ -37,6 +38,18 @@ void eliminarContacto(vector<contactoEmail> &contactos) {
     }
     cout << "No se encontro el contacto" << endl;
 }
+
+void mostrarContactos(vector<contactoEmail> contactos) {
+    for (contactoEmail contacto : contactos) {
+        cout << "Nombre: " << contacto.nombre << endl;
+        cout << "Sexo: " << contacto.sexo << endl;
+        cout << "Edad: " << contacto.edad << endl;
+        cout << "Teléfono: " << contacto.telefono << endl;
+        cout << "Email: " << contacto.email << endl;
+        cout << "Nacionalidad: " << contacto.nacionalidad << endl;
+        cout << endl;
+    }
+}   
 
 void menu(){
     int opcion;
@@ -62,7 +75,7 @@ void menu(){
                 eliminarContacto(contactos);
                 break;
             case 3:
-                //Mostrar
+                mostrarContactos(contactos);
                 break;
             case 4:
                 //Mostrar por email
