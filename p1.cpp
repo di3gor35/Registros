@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <vector>
 #include <windows.h>
 
 using namespace std;
@@ -12,8 +14,20 @@ struct contactoEmail {
     string nacionalidad;
 };
 
+void agregarContacto(vector<contactoEmail> &contactos) {
+    contactoEmail contacto;
+    cout << "Ingrese el nombre del contacto: ", cin >> contacto.nombre;
+    cout << "Ingrese el sexo del contacto: ", cin >> contacto.sexo;
+    cout << "Ingrese la edad del contacto: ", cin >> contacto.edad;
+    cout << "Ingrese el telefono del contacto: ", cin >> contacto.telefono;
+    cout << "Ingrese el email del contacto: ", cin >> contacto.email;
+    cout << "Ingrese la nacionalidad del contacto: ", cin >> contacto.nacionalidad;
+    contactos.push_back(contacto);
+}
+
 void menu(){
     int opcion;
+    vector<contactoEmail> contactos;
     do {   
         cout << "Seleccione la acción que desea realizar" << endl;
         cout << "1. Agregar un contacto" << endl;
@@ -23,12 +37,13 @@ void menu(){
         cout << "0. Salir" << endl;
         cout << "Opcion: ";
         cin >> opcion;
+        cout << endl;
         switch(opcion){
             case 0:
                 //Salir
                 break;
             case 1:
-                //Agregar
+                agregarContacto(contactos);
                 break;
             case 2:
                 //Eliminar
@@ -40,9 +55,10 @@ void menu(){
                 //Mostrar por email
                 break;
             default:
-                cout << "Opción no válida" << endl;
+                cout << "Opción no válida";
                 break;
-        }  
+        } 
+        cout << endl; 
     } while (opcion != 0);
 }
 
