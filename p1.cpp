@@ -3,6 +3,15 @@
 
 using namespace std;
 
+struct contactoEmail {
+    string nombre;
+    string sexo;
+    int edad;
+    string telefono;
+    string email;
+    string nacionalidad;
+};
+
 void menu(){
     int opcion;
     do {   
