@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <windows.h>
-
+#include <algorithm>
 using namespace std;
 
 struct contactoEmail {
@@ -13,6 +13,32 @@ struct contactoEmail {
     string email;
     string nacionalidad;
 };
+
+int len(string str){
+    int i = 0;
+    while (str[i] != '\0'){
+        i++;
+    }
+    return i;
+}
+
+bool esParte(string cadena, string subcadena){
+    for (int j = 0; j < len(cadena); j++){
+        if (cadena[j] == subcadena[0]){
+            int i;
+            for (i = 0; i < len(subcadena); i++){
+                if (cadena[j + i] != subcadena[i]){
+                    break;
+                }
+            }
+            if (i == len(subcadena)){
+                return true;
+            }
+        } 
+    }
+    return false;
+    
+}
 
 void agregarContacto(vector<contactoEmail> &contactos) {
     contactoEmail contacto;
@@ -28,7 +54,8 @@ void agregarContacto(vector<contactoEmail> &contactos) {
 
 void eliminarContacto(vector<contactoEmail> &contactos) {
     string nombre;
-    cout << "Ingrese el nombre del contacto que desea eliminar: ", cin >> nombre;
+    cin.ignore();
+    cout << "Ingrese el nombre del contacto que desea eliminar: ", getline(cin, nombre);
     for (size_t i = 0; i < contactos.size(); i++) {
         if (contactos[i].nombre == nombre) {
             contactos.erase(contactos.begin() + i);
@@ -51,6 +78,34 @@ void mostrarContactos(vector<contactoEmail> contactos) {
     }
 }   
 
+void mostrarContactosPorEmail(vector<contactoEmail> contactos) {
+    vector<string> emails;
+    for (contactoEmail contacto : contactos) {
+        emails.push_back(contacto.email);
+    }
+    for (size_t i = 0; i < emails.size(); i++) {
+        emails[i] = emails[i].substr(emails[i].find('@') + 1);
+    }
+    
+    sort(emails.begin(), emails.end());
+
+    for (size_t j = 0; j < emails.size(); j++) {
+        for (size_t i = 0; i < contactos.size(); i++) {
+            if (esParte(contactos[i].email, emails[j])) {
+                cout << "Nombre: " << contactos[i].nombre << endl;
+                cout << "Sexo: " << contactos[i].sexo << endl;
+                cout << "Edad: " << contactos[i].edad << endl;
+                cout << "Teléfono: " << contactos[i].telefono << endl;
+                cout << "Email: " << contactos[i].email << endl;
+                cout << "Nacionalidad: " << contactos[i].nacionalidad << endl;
+                cout << endl;
+                break;
+            
+            }
+        }
+    }
+}
+
 void menu(){
     int opcion;
     vector<contactoEmail> contactos;
@@ -66,7 +121,7 @@ void menu(){
         cout << endl;
         switch(opcion){
             case 0:
-                //Salir
+                cout << "Saliendo del programa..." << endl;
                 break;
             case 1:
                 agregarContacto(contactos);
@@ -78,7 +133,7 @@ void menu(){
                 mostrarContactos(contactos);
                 break;
             case 4:
-                //Mostrar por email
+                mostrarContactosPorEmail(contactos);
                 break;
             default:
                 cout << "Opción no válida";
