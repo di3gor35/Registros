@@ -35,6 +35,20 @@ void listarProductos(vector<Producto> producto){
     }
 }
 
+void buscarProducto(vector<Producto> producto){
+    string nombre;
+    cout << "Ingrese el nombre del producto que desea buscar: ", cin >> nombre;
+    for (size_t i = 0; i < producto.size(); i++) {
+        if (producto[i].nombre == nombre) {
+            cout << "Producto encontrado" << endl;
+            cout << "Nombre: " << producto[i].nombre << endl;
+            cout << "Precio: " << producto[i].precio << endl;
+            return;
+        }
+    }
+    cout << "Producto no encontrado" << endl;
+}
+
 void menu(){
     char opcion;
     vector<Producto> producto;
@@ -64,7 +78,7 @@ void menu(){
                 listarProductos(producto);
                 break;
             case 'c':
-                
+                buscarProducto(producto);
                 break;
             case 'd':
 
