@@ -15,12 +15,24 @@ struct Venta {
     float precioTotal;
 };
 
-void registrarProducto(vector<Producto> &producto) {
+void registrarProducto(vector<Producto> &producto){
     Producto p;
     cout << "Ingrese el nombre del producto: ", cin >> p.nombre;
     cout << "Ingrese el precio del producto: ", cin >> p.precio;
     producto.push_back(p);
     cout << "Producto registrado correctamente" << endl;
+}
+
+void listarProductos(vector<Producto> producto){
+    if (producto.empty()) {
+        cout << "No hay productos registrados" << endl;
+    } else {
+        for (size_t i = 0; i < producto.size(); i++) {
+            cout << "Producto " << i + 1 << ": " << endl;
+            cout << "Nombre: " << producto[i].nombre << endl;
+            cout << "Precio: " << producto[i].precio << endl;
+        }
+    }
 }
 
 void menu(){
@@ -49,7 +61,7 @@ void menu(){
                 registrarProducto(producto);
                 break;
             case 'b':
-                
+                listarProductos(producto);
                 break;
             case 'c':
                 
