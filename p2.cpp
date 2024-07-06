@@ -11,7 +11,7 @@ struct Producto {
 };
 
 struct Venta {
-    int idProducto;
+    int idVenta;
     string producto;
     int cantidad;
     float precioTotal;
@@ -85,7 +85,7 @@ void registrarVenta(vector<Venta> &venta, vector<Producto> producto, int &id){
     cout << "Ingrese el nombre del producto que desea comprar: ", cin >> nombre;
     for (size_t i = 0; i < producto.size(); i++) {
         if (producto[i].nombre == nombre) {
-            v.idProducto = id++;
+            v.idVenta = id++;
             v.producto = producto[i].nombre;
             cout << "Ingrese la cantidad de productos que desea comprar: ", cin >> v.cantidad;
             v.precioTotal = producto[i].precio * v.cantidad;
@@ -95,6 +95,20 @@ void registrarVenta(vector<Venta> &venta, vector<Producto> producto, int &id){
         }
     }
     cout << "Producto no encontrado" << endl;
+}
+
+void listarVentas(vector<Venta> venta){
+    if (venta.empty()) {
+        cout << "No hay ventas registradas" << endl;
+    } else {
+        for (size_t i = 0; i < venta.size(); i++) {
+            cout << "------- Venta " << i + 1 << " -------" << endl;
+            cout << "ID Venta: " << venta[i].idVenta << endl;
+            cout << "Producto: " << venta[i].producto << endl;
+            cout << "Cantidad: " << venta[i].cantidad << endl;
+            cout << "Precio Total: " << venta[i].precioTotal << endl;
+        }
+    }
 }
 
 void menu(){
@@ -140,7 +154,7 @@ void menu(){
                 registrarVenta(venta, producto, id);
                 break;
             case 'g':
-                
+                listarVentas(venta);
                 break;
             case 'h':
                 
