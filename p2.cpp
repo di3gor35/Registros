@@ -111,6 +111,18 @@ void listarVentas(vector<Venta> venta){
     }
 }
 
+void calcularTotalVentas(vector<Venta> venta){
+    if (venta.empty()){
+        cout << "No hay ventas registradas" << endl;
+    } else {
+        float suma = 0;
+        for (size_t i = 0; i < venta.size(); i++){
+            suma += venta[i].precioTotal;
+        }
+        cout << "El total de ventas es: " << suma << endl;
+    }
+}
+
 void menu(){
     char opcion;
     int id = 0;
@@ -157,7 +169,7 @@ void menu(){
                 listarVentas(venta);
                 break;
             case 'h':
-                
+                calcularTotalVentas(venta);
                 break;
             default:
                 cout << "Opción no válida";
