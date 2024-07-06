@@ -79,6 +79,24 @@ void eliminarProducto(vector<Producto> &producto){
     cout << "Producto no encontrado" << endl;
 }
 
+void registrarVenta(vector<Venta> &venta, vector<Producto> producto, int &id){
+    Venta v;
+    string nombre;
+    cout << "Ingrese el nombre del producto que desea comprar: ", cin >> nombre;
+    for (size_t i = 0; i < producto.size(); i++) {
+        if (producto[i].nombre == nombre) {
+            v.idProducto = id++;
+            v.producto = producto[i].nombre;
+            cout << "Ingrese la cantidad de productos que desea comprar: ", cin >> v.cantidad;
+            v.precioTotal = producto[i].precio * v.cantidad;
+            venta.push_back(v);
+            cout << "Venta registrada correctamente" << endl;
+            return;
+        }
+    }
+    cout << "Producto no encontrado" << endl;
+}
+
 void menu(){
     char opcion;
     int id = 0;
@@ -119,7 +137,7 @@ void menu(){
                 eliminarProducto(producto);
                 break;
             case 'f':
-                
+                registrarVenta(venta, producto, id);
                 break;
             case 'g':
                 
