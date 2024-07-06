@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <windows.h>
 using namespace std;
 
 struct Producto {
@@ -13,6 +14,14 @@ struct Venta {
     int cantidad;
     float precioTotal;
 };
+
+void registrarProducto(vector<Producto> &producto) {
+    Producto p;
+    cout << "Ingrese el nombre del producto: ", cin >> p.nombre;
+    cout << "Ingrese el precio del producto: ", cin >> p.precio;
+    producto.push_back(p);
+    cout << "Producto registrado correctamente" << endl;
+}
 
 void menu(){
     char opcion;
@@ -31,32 +40,33 @@ void menu(){
         cout << "Opcion: ";
         cin >> opcion;
         cout << endl;
-        switch(opcion){
-            case 'S': case 's':
+
+        switch(tolower(opcion)){
+            case 's':
                 cout << "Saliendo del programa..." << endl;
                 break;
-            case 'A': case 'a':
+            case 'a':
+                registrarProducto(producto);
+                break;
+            case 'b':
                 
                 break;
-            case 'B': case 'b':
+            case 'c':
                 
                 break;
-            case 'C': case 'c':
-                
-                break;
-            case 'D': case 'd':
+            case 'd':
 
                 break;
-            case 'E': case 'e':
+            case 'e':
                 
                 break;
-            case 'F': case 'f':
+            case 'f':
 
                 break;
-            case 'G': case 'g':
+            case 'g':
                 
                 break;
-            case 'H': case 'h':
+            case 'h':
                 
                 break;
             default:
@@ -64,12 +74,13 @@ void menu(){
                 break;
         } 
         cout << endl; 
-    } while (opcion != 'S' || opcion != 's');
+    } while (opcion != 's');
 }
 
 
 
 int main(){
+    SetConsoleOutputCP(CP_UTF8);
     menu();
     return 0;
 }
