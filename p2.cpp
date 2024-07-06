@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct Producto {
@@ -13,10 +14,9 @@ struct Venta {
     float precioTotal;
 };
 
-
 void menu(){
     char opcion;
-    //vector<contactoEmail> contactos;
+    vector<Producto> producto;
     do {   
         cout << "Seleccione la acción que desea realizar" << endl;
         cout << "A. Registrar un nuevo producto" << endl;
@@ -32,31 +32,31 @@ void menu(){
         cin >> opcion;
         cout << endl;
         switch(opcion){
-            case 'S':
+            case 'S': case 's':
                 cout << "Saliendo del programa..." << endl;
                 break;
-            case 'A':
+            case 'A': case 'a':
                 
                 break;
-            case 'B':
+            case 'B': case 'b':
                 
                 break;
-            case 'C':
+            case 'C': case 'c':
                 
                 break;
-            case 'D':
+            case 'D': case 'd':
+
+                break;
+            case 'E': case 'e':
                 
                 break;
-            case 'E':
+            case 'F': case 'f':
+
+                break;
+            case 'G': case 'g':
                 
                 break;
-            case 'F':
-                
-                break;
-            case 'G':
-                
-                break;
-            case 'H':
+            case 'H': case 'h':
                 
                 break;
             default:
@@ -64,12 +64,12 @@ void menu(){
                 break;
         } 
         cout << endl; 
-    } while (opcion != 'S');
+    } while (opcion != 'S' || opcion != 's');
 }
 
 
 
 int main(){
-
+    menu();
     return 0;
 }
