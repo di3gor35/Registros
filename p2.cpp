@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 struct Producto {
@@ -64,9 +66,24 @@ void actualizarProducto(vector<Producto> &producto){
     cout << "Producto no encontrado" << endl;
 }
 
+void eliminarProducto(vector<Producto> &producto){
+    string nombre;
+    cout << "Ingrese el nombre del producto que desea eliminar: ", cin >> nombre;
+    for (size_t i = 0; i < producto.size(); i++) {
+        if (producto[i].nombre == nombre) {
+            producto.erase(producto.begin() + i);
+            cout << "Producto eliminado correctamente" << endl;
+            return;
+        }
+    }
+    cout << "Producto no encontrado" << endl;
+}
+
 void menu(){
     char opcion;
+    int id = 0;
     vector<Producto> producto;
+    vector<Venta> venta;
     do {   
         cout << "Seleccione la acción que desea realizar" << endl;
         cout << "A. Registrar un nuevo producto" << endl;
@@ -99,10 +116,10 @@ void menu(){
                 actualizarProducto(producto);
                 break;
             case 'e':
-                
+                eliminarProducto(producto);
                 break;
             case 'f':
-
+                
                 break;
             case 'g':
                 
@@ -115,7 +132,7 @@ void menu(){
                 break;
         } 
         cout << endl; 
-    } while (opcion != 's');
+    } while (tolower(opcion) != 's');
 }
 
 
